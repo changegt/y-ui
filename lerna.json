@@ -1,0 +1,20 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "command": {
+    "publish": {
+      "ignoreChanges": [],
+      "npmClient": "npm"
+    },
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [
+        "--no-package-lock"
+      ]
+    }
+  },
+  "version": "independent",
+  "lerna": "2.8.0",
+  "npmClient": "npm"
+}

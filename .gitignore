@@ -1,0 +1,37 @@
+TODO.md
+.DS_Store
+/node_modules
+/packages/*/node_modules
+/packages/node_modules
+/packages/*/LICENSE
+lerna-debug.log
+.rtp2_cache
+.idea/*
+yarn-error.log
+yarn.lock
+/packages/**/src/**/demo
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/npm-debug.log*
+/yarn-error.log
+/yarn.lock
+/package-lock.json
+
+# production
+/dist
+
+# misc
+.DS_Store
+
+# umi
+/.umi
+/.umi-production
+/.umi-test
+/.env.local
+/**/.umi
+
+.history
+.vscode

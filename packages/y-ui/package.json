@@ -1,0 +1,84 @@
+{
+  "name": "y-ui",
+  "version": "1.0.0",
+  "description": "y ui",
+  "scripts": {
+    "start": "dumi dev",
+    "docs:build": "dumi build",
+    "build": "father-build",
+    "prettier": "prettier --write '**/*.{js,jsx,tsx,ts,less,md,json}'",
+    "tslint": "npm run prettier",
+    "test": "umi-test",
+    "test:coverage": "umi-test --coverage"
+  },
+  "main": "dist/index.js",
+  "module": "es/index.js",
+  "files": [
+    "dist",
+    "es",
+    "lib",
+    "src"
+  ],
+  "typings": "dist/src/index.d.ts",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/changegt/y-ui.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org",
+    "access": "public"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.{js,jsx,less,md,json}": [
+      "prettier --write"
+    ],
+    "*.ts?(x)": [
+      "prettier --parser=typescript --write"
+    ]
+  },
+  "dependencies": {
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.0.5",
+    "antd": "^3.26.13",
+    "babel-runtime": "^6.26.0",
+    "classnames": "^2.2.6",
+    "dumi": "^1.0.5",
+    "father-build": "^1.17.2",
+    "lint-staged": "^10.0.7",
+    "memoize-one": "^5.1.1",
+    "omit.js": "^1.0.2",
+    "prettier": "^1.19.1",
+    "prop-types": "^15.7.2",
+    "qs": "^6.9.4",
+    "querystring": "^0.2.0",
+    "react": "^16.12.0",
+    "umi-request": "^1.2.19",
+    "yorkie": "^2.0.0"
+  },
+  "peerDependencies": {
+    "@umijs/preset-react": "1.x",
+    "@umijs/test": "^3.0.5",
+    "antd": "^3.26.13",
+    "babel-runtime": "^6.26.0",
+    "classnames": "^2.2.6",
+    "dumi": "^1.0.5",
+    "father-build": "^1.17.2",
+    "lint-staged": "^10.0.7",
+    "omit.js": "^1.0.2",
+    "prettier": "^1.19.1",
+    "prop-types": "^15.7.2",
+    "qs": "^6.9.4",
+    "react": "^16.12.0",
+    "umi-request": "^1.2.19",
+    "yorkie": "^2.0.0"
+  },
+  "gitHead": "06a60e0777b50a3219589a5d814971d6fef8d8bf",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.10.4",
+    "rollup-plugin-typescript2": "^0.27.1"
+  }
+}
