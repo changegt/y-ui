@@ -35,7 +35,7 @@ footer: Open-source MIT Licensed | Copyright © 2019-present<br />Powered by sel
 # 项目打包
 > npm run build
 
-# TNPM 发布
+# NPM 发布
 > npm run publish
 
 # 文档打包
