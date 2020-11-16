@@ -8,10 +8,18 @@ require('antd/es/button/style');
 var _Button = _interopDefault(require('antd/es/button'));
 var React = _interopDefault(require('react'));
 
-var index = (function () {
+/**
+ * 按钮组件
+ */
+var YButton = function YButton(props) {
   return React.createElement(_Button, {
     type: "primary"
-  }, "\u7EC4\u4EF6\u6309\u94AE");
-});
+  }, props.children || props.text);
+};
 
-exports.YButton = index;
+YButton.defaultProps = {
+  text: '组件按钮',
+  children: null
+};
+
+exports.YButton = YButton;
