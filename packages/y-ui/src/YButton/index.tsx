@@ -5,11 +5,17 @@ import PropTypes from 'prop-types';
 
 type IChildren = React.ReactChild;
 
+enum modeEnum {
+  primary,
+  danger
+}
+
 export interface IProps {
   /** 按钮名称 */
   text?: string;
   /** 子节点 */
   children?: IChildren;
+  mode?: modeEnum
 }
 
 /**
@@ -24,6 +30,7 @@ const YButton = (props: IProps) => {
 YButton.defaultProps = {
   text: '组件按钮',
   children: null,
+  mode: 0,
 }
 
 export default YButton;
