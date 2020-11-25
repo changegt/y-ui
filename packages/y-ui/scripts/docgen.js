@@ -4,15 +4,15 @@ const reactDocs = require('react-docgen')
 const prettier = require('prettier')
 
 // 读取文件内容
-const contentStr = fs.readFileSync(path.resolve('./src/YButton/index.tsx'), 'utf-8')
-console.log(contentStr);
+const contentStr = fs.readFileSync(path.resolve('./src/YLine/index.tsx'), 'utf-8')
 // 提取组件信息
 const componentInfo = reactDocs.parse(contentStr)
-// // 打印信息
-console.log(componentInfo)
 
 // 生成markdown文档
-fs.writeFileSync(path.resolve('./src/YButton/index.md'), commentToMarkDown(componentInfo))
+fs.writeFileSync(path.resolve('./src/YLine/map.json'), JSON.stringify(componentInfo));
+
+// 生成markdown文档
+fs.writeFileSync(path.resolve('./src/YLine/index.md'), commentToMarkDown(componentInfo))
 
 // 把react-docgen提取的信息转换成markdown格式
 function commentToMarkDown(componentInfo) {
@@ -36,9 +36,10 @@ function renderMarkDown(props) {
 
 function getType(type) {
   const handler = {
-    enum: (type) =>
-      type.value.map((item) => item.value.replace(/'/g, '')).join(' \\| '),
-    union: (type) => type.value.map((item) => item.name).join(' \\| ')
+    enum: (type) => type.value ?
+      type.value.map((item) => item.value.replace(/'/g, '')).join(' \\| ') : '',
+    union: (type) => type.value ?
+      type.value.map((item) => item.name).join(' \\| ') : '',
   }
   if (typeof handler[type.name] === 'function') {
     return handler[type.name](type).replace(/\|/g, '')
@@ -50,9 +51,9 @@ function getType(type) {
 // 渲染1行属性
 function renderProp(
   name,
-  { type = { name: '-' }, defaultValue = { value: '-' }, required, description }
+  { flowType = { name: '-' }, defaultValue = { value: '-' }, required, description }
 ) {
-  return `| ${name} | ${getType(type)} | ${defaultValue.value.replace(
+  return `| ${name} | ${getType(flowType)} | ${defaultValue.value.replace(
     /\|/g,
     '<span>|</span>'
   )} | ${required ? '✓' : '✗'} |  ${description || '-'} |

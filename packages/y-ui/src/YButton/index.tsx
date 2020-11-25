@@ -1,21 +1,12 @@
 import React from 'react';
 import { Button } from 'antd';
 
-import PropTypes from 'prop-types';
-
-type IChildren = React.ReactChild;
-
-enum modeEnum {
-  primary,
-  danger
-}
-
 export interface IProps {
   /** 按钮名称 */
   text?: string;
   /** 子节点 */
-  children?: IChildren;
-  mode?: modeEnum
+  children?: React.ReactChild;
+  mode?: 'primary' | 'danger'
 }
 
 /**

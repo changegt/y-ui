@@ -49,3 +49,52 @@
 [umi-plugin-library](https://github.com/umijs/umi-plugin-library) (基于umi组件库开发工具，为组件开发提供全套方案，专注库开发)
 
 [lerna](https://github.com/lerna/lerna) (monorepo 管理工具)
+
+
+```
+数据结构
+{
+  "required": true, // 是否必要
+  "description": "测试数字", // 描述
+
+  "flowType": {
+    // 类型名称
+    // 基础类型 string、number、boolean、undefined、null
+    // 引用类型 Array、union（枚举）、
+    // 自定义 signature（自定义类型）
+    "name": "boolean",
+
+    // 自定义对象 object 或者函数 function
+    "type": "object",
+
+    // 非基础类型都会有，申明转化为string
+    "raw": "any[]",
+
+    // 自定义内容
+    "signature": {
+      // signature 为自定义对象的手
+      "properties": [
+        {
+          "key": {}, // 对象的key
+          "value": { "flowType", "required" }, // 对象的value
+        }
+      ],
+
+      // 为函数时候
+      "properties": {
+        "arguments": [
+          {
+            "name": "b", // 参数名称
+            "type": { "flowType" }, // flowType 结构
+          }
+        ], // 函数参数
+        "return": { "flowType" }, // 函数返回值
+      },
+    }
+
+    // elements 子元素 为数组或者枚举
+    "elements": ["flowType", ....],
+  },
+
+}
+```

@@ -1,0 +1,494 @@
+{
+  "description": "折线图组件",
+  "displayName": "YLine",
+  "methods": [],
+  "props": {
+    "testNum": {
+      "required": false,
+      "flowType": {
+        "name": "number"
+      },
+      "description": "测试数字",
+      "defaultValue": {
+        "value": "1",
+        "computed": false
+      }
+    },
+    "testStr": {
+      "required": false,
+      "flowType": {
+        "name": "string"
+      },
+      "description": "测试字符串",
+      "defaultValue": {
+        "value": "'1'",
+        "computed": false
+      }
+    },
+    "testNull": {
+      "required": false,
+      "flowType": {
+        "name": "null"
+      },
+      "description": "测试 null",
+      "defaultValue": {
+        "value": "null",
+        "computed": false
+      }
+    },
+    "testUnd": {
+      "required": false,
+      "flowType": {
+        "name": "undefined"
+      },
+      "description": "测试 undefined",
+      "defaultValue": {
+        "value": "undefined",
+        "computed": true
+      }
+    },
+    "testBool": {
+      "required": false,
+      "flowType": {
+        "name": "boolean"
+      },
+      "description": "测试 boolean",
+      "defaultValue": {
+        "value": "true",
+        "computed": false
+      }
+    },
+    "testArr": {
+      "required": false,
+      "flowType": {
+        "name": "Array",
+        "elements": [{
+          "name": "any"
+        }],
+        "raw": "any[]"
+      },
+      "description": "测试数组 any",
+      "defaultValue": {
+        "value": "[1]",
+        "computed": false
+      }
+    },
+    "testNumArr": {
+      "required": false,
+      "flowType": {
+        "name": "Array",
+        "elements": [{
+          "name": "number"
+        }],
+        "raw": "number[]"
+      },
+      "description": "测试数组 number",
+      "defaultValue": {
+        "value": "[1]",
+        "computed": false
+      }
+    },
+    "testStrArr": {
+      "required": false,
+      "flowType": {
+        "name": "Array",
+        "elements": [{
+          "name": "string"
+        }],
+        "raw": "string[]"
+      },
+      "description": "测试数组 string",
+      "defaultValue": {
+        "value": "['1']",
+        "computed": false
+      }
+    },
+    "testBoolArr": {
+      "required": false,
+      "flowType": {
+        "name": "Array",
+        "elements": [{
+          "name": "boolean"
+        }],
+        "raw": "boolean[]"
+      },
+      "description": "测试数组 boolean",
+      "defaultValue": {
+        "value": "[true]",
+        "computed": false
+      }
+    },
+    "testMixArr": {
+      "required": false,
+      "flowType": {
+        "name": "Array",
+        "elements": [{
+          "name": "union",
+          "raw": "string | number | boolean",
+          "elements": [{
+            "name": "string"
+          }, {
+            "name": "number"
+          }, {
+            "name": "boolean"
+          }]
+        }],
+        "raw": "(string | number | boolean)[]"
+      },
+      "description": "测试数组 混合",
+      "defaultValue": {
+        "value": "[1, '1', true]",
+        "computed": false
+      }
+    },
+    "testData": {
+      "required": false,
+      "flowType": {
+        "name": "signature",
+        "type": "object",
+        "raw": "{\n  /** x */\n  x: string | number,\n  /** y */\n  y: IDataItem | IDataItem[],\n\n  /** 子结构 循环子结构无法构造，会出现循环地狱 */\n  // children: IDataSource | IDataSource[];\n\n  /** 扩展 */\n  [key: string]: any,\n}",
+        "signature": {
+          "properties": [{
+            "key": {
+              "name": "string"
+            },
+            "value": {
+              "name": "any",
+              "required": true
+            }
+          }, {
+            "key": "x",
+            "value": {
+              "name": "union",
+              "raw": "string | number",
+              "elements": [{
+                "name": "string"
+              }, {
+                "name": "number"
+              }],
+              "required": true
+            }
+          }, {
+            "key": "y",
+            "value": {
+              "name": "union",
+              "raw": "IDataItem | IDataItem[]",
+              "elements": [{
+                "name": "union",
+                "raw": "string | number",
+                "elements": [{
+                  "name": "string"
+                }, {
+                  "name": "number"
+                }]
+              }, {
+                "name": "Array",
+                "elements": [{
+                  "name": "union",
+                  "raw": "string | number",
+                  "elements": [{
+                    "name": "string"
+                  }, {
+                    "name": "number"
+                  }]
+                }],
+                "raw": "IDataItem[]"
+              }],
+              "required": true
+            }
+          }]
+        }
+      },
+      "description": "测试单数对象的数据源",
+      "defaultValue": {
+        "value": "[]",
+        "computed": false
+      }
+    },
+    "testObj": {
+      "required": false,
+      "flowType": {
+        "name": "signature",
+        "type": "object",
+        "raw": "{ a?: string }",
+        "signature": {
+          "properties": [{
+            "key": "a",
+            "value": {
+              "name": "string",
+              "required": false
+            }
+          }]
+        }
+      },
+      "description": "测试固定对象",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      }
+    },
+    "mode": {
+      "required": false,
+      "flowType": {
+        "name": "union",
+        "raw": "'single' | 'mulit'",
+        "elements": [{
+          "name": "literal",
+          "value": "'single'"
+        }, {
+          "name": "literal",
+          "value": "'mulit'"
+        }]
+      },
+      "description": "枚举，单数据或者多数据",
+      "defaultValue": {
+        "value": "'single'",
+        "computed": false
+      }
+    },
+    "dataSource": {
+      "required": false,
+      "flowType": {
+        "name": "Array",
+        "elements": [{
+          "name": "signature",
+          "type": "object",
+          "raw": "{\n  /** x */\n  x: string | number,\n  /** y */\n  y: IDataItem | IDataItem[],\n\n  /** 子结构 循环子结构无法构造，会出现循环地狱 */\n  // children: IDataSource | IDataSource[];\n\n  /** 扩展 */\n  [key: string]: any,\n}",
+          "signature": {
+            "properties": [{
+              "key": {
+                "name": "string"
+              },
+              "value": {
+                "name": "any",
+                "required": true
+              }
+            }, {
+              "key": "x",
+              "value": {
+                "name": "union",
+                "raw": "string | number",
+                "elements": [{
+                  "name": "string"
+                }, {
+                  "name": "number"
+                }],
+                "required": true
+              }
+            }, {
+              "key": "y",
+              "value": {
+                "name": "union",
+                "raw": "IDataItem | IDataItem[]",
+                "elements": [{
+                  "name": "union",
+                  "raw": "string | number",
+                  "elements": [{
+                    "name": "string"
+                  }, {
+                    "name": "number"
+                  }]
+                }, {
+                  "name": "Array",
+                  "elements": [{
+                    "name": "union",
+                    "raw": "string | number",
+                    "elements": [{
+                      "name": "string"
+                    }, {
+                      "name": "number"
+                    }]
+                  }],
+                  "raw": "IDataItem[]"
+                }],
+                "required": true
+              }
+            }]
+          }
+        }],
+        "raw": "Array<IDataSource>"
+      },
+      "description": "数据源的数据结构",
+      "defaultValue": {
+        "value": "[]",
+        "computed": false
+      }
+    },
+    "extraOptions": {
+      "required": false,
+      "flowType": {
+        "name": "object"
+      },
+      "description": "扩展差异化 options 配置，按照echarts options 结构配置",
+      "defaultValue": {
+        "value": "{}",
+        "computed": false
+      }
+    },
+    "onClick": {
+      "required": false,
+      "flowType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(a: string) => void",
+        "signature": {
+          "arguments": [{
+            "name": "a",
+            "type": {
+              "name": "string"
+            }
+          }],
+          "return": {
+            "name": "void"
+          }
+        }
+      },
+      "description": "点击事件",
+      "defaultValue": {
+        "value": "() => {}",
+        "computed": false
+      }
+    },
+    "onClick2": {
+      "required": false,
+      "flowType": {
+        "name": "signature",
+        "type": "function",
+        "raw": "(b: Array<IDataSource>) => IDataSource",
+        "signature": {
+          "arguments": [{
+            "name": "b",
+            "type": {
+              "name": "Array",
+              "elements": [{
+                "name": "signature",
+                "type": "object",
+                "raw": "{\n  /** x */\n  x: string | number,\n  /** y */\n  y: IDataItem | IDataItem[],\n\n  /** 子结构 循环子结构无法构造，会出现循环地狱 */\n  // children: IDataSource | IDataSource[];\n\n  /** 扩展 */\n  [key: string]: any,\n}",
+                "signature": {
+                  "properties": [{
+                    "key": {
+                      "name": "string"
+                    },
+                    "value": {
+                      "name": "any",
+                      "required": true
+                    }
+                  }, {
+                    "key": "x",
+                    "value": {
+                      "name": "union",
+                      "raw": "string | number",
+                      "elements": [{
+                        "name": "string"
+                      }, {
+                        "name": "number"
+                      }],
+                      "required": true
+                    }
+                  }, {
+                    "key": "y",
+                    "value": {
+                      "name": "union",
+                      "raw": "IDataItem | IDataItem[]",
+                      "elements": [{
+                        "name": "union",
+                        "raw": "string | number",
+                        "elements": [{
+                          "name": "string"
+                        }, {
+                          "name": "number"
+                        }]
+                      }, {
+                        "name": "Array",
+                        "elements": [{
+                          "name": "union",
+                          "raw": "string | number",
+                          "elements": [{
+                            "name": "string"
+                          }, {
+                            "name": "number"
+                          }]
+                        }],
+                        "raw": "IDataItem[]"
+                      }],
+                      "required": true
+                    }
+                  }]
+                }
+              }],
+              "raw": "Array<IDataSource>"
+            }
+          }],
+          "return": {
+            "name": "signature",
+            "type": "object",
+            "raw": "{\n  /** x */\n  x: string | number,\n  /** y */\n  y: IDataItem | IDataItem[],\n\n  /** 子结构 循环子结构无法构造，会出现循环地狱 */\n  // children: IDataSource | IDataSource[];\n\n  /** 扩展 */\n  [key: string]: any,\n}",
+            "signature": {
+              "properties": [{
+                "key": {
+                  "name": "string"
+                },
+                "value": {
+                  "name": "any",
+                  "required": true
+                }
+              }, {
+                "key": "x",
+                "value": {
+                  "name": "union",
+                  "raw": "string | number",
+                  "elements": [{
+                    "name": "string"
+                  }, {
+                    "name": "number"
+                  }],
+                  "required": true
+                }
+              }, {
+                "key": "y",
+                "value": {
+                  "name": "union",
+                  "raw": "IDataItem | IDataItem[]",
+                  "elements": [{
+                    "name": "union",
+                    "raw": "string | number",
+                    "elements": [{
+                      "name": "string"
+                    }, {
+                      "name": "number"
+                    }]
+                  }, {
+                    "name": "Array",
+                    "elements": [{
+                      "name": "union",
+                      "raw": "string | number",
+                      "elements": [{
+                        "name": "string"
+                      }, {
+                        "name": "number"
+                      }]
+                    }],
+                    "raw": "IDataItem[]"
+                  }],
+                  "required": true
+                }
+              }]
+            }
+          }
+        }
+      },
+      "description": "复杂函数",
+      "defaultValue": {
+        "value": "() => {}",
+        "computed": false
+      }
+    },
+    "legendLists": {
+      "defaultValue": {
+        "value": "[]",
+        "computed": false
+      },
+      "required": false
+    }
+  }
+}

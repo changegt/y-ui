@@ -1,0 +1,42 @@
+{
+  "testNum": 1,
+  "testStr": "1",
+  "testNull": "",
+  "testUnd": "",
+  "testBool": true,
+  "testArr": ["any"],
+  "testNumArr": ["number"],
+  "testStrArr": ["string"],
+  "testBoolArr": ["boolean"],
+  "testMixArr": [
+    ["string", "number", "boolean"]
+  ],
+  "testData": {
+    "string": "any",
+    "x": ["string", "number"],
+    "y": [
+      ["string", "number"],
+      [
+        ["string", "number"]
+      ]
+    ]
+  },
+  "testObj": {
+    "a": "1"
+  },
+  "mode": ["'single'", "'mulit'"],
+  "dataSource": [{
+    "string": "any",
+    "x": ["string", "number"],
+    "y": [
+      ["string", "number"],
+      [
+        ["string", "number"]
+      ]
+    ]
+  }],
+  "extraOptions": "object",
+  "onClick": "function",
+  "onClick2": "function",
+  "legendLists": ""
+}

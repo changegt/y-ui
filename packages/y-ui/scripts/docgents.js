@@ -7,19 +7,25 @@ const options = {
   savePropValueAsString: true,
   shouldExtractValuesFromUnion: true,
   shouldExtractLiteralValuesFromEnum: true,
-  skipChildrenPropWithoutDoc: true,
+  skipChildrenPropWithoutDoc: false,
+  shouldExtractLiteralValuesFromEnum: true,
 };
 
 // Parse a file for docgen info
-const componentInfo = docgen.parse(path.resolve('./src/YButton/index.tsx'), options);
+const componentInfo = docgen.parse(path.resolve('./src/YLine/index.tsx'), options);
+
+// console.log(componentInfo.length);
 
 // 生成markdown文档
-fs.writeFileSync(path.resolve('./src/YButton/index2.md'), commentToMarkDown(componentInfo[0]))
+fs.writeFileSync(path.resolve('./src/YLine/map.json'), JSON.stringify(componentInfo));
+
+// 生成markdown文档
+fs.writeFileSync(path.resolve('./src/YLine/index.md'), commentToMarkDown(componentInfo[0]))
 
 // 把react-docgen提取的信息转换成markdown格式
 function commentToMarkDown(componentStr) {
   let { props } = componentStr;
-  console.log(props);
+  // console.log(props);
   const markdownInfo = renderMarkDown(props)
   // 使用prettier美化格式
   const content = prettier.format(markdownInfo, {
@@ -55,9 +61,9 @@ function renderProp(
   name,
   { type = { name: '-' }, defaultValue = { value: '-' }, required, description }
 ) {
-  return `| ${name} | ${getType(type)} | ${defaultValue.value.replace(
+  return `| ${name} | ${getType(type)} | ${defaultValue ? defaultValue.value.replace(
     /\|/g,
     '<span>|</span>'
-  )} | ${required ? '✓' : '✗'} |  ${description || '-'} |
+  ) : String(defaultValue)} | ${required ? '✓' : '✗'} |  ${description || '-'} |
   `
 }
